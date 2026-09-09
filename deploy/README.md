@@ -21,9 +21,26 @@ Add a `--dry-run` flag to print every step without touching the system.
 Then fill in the secrets and start the service:
 
 ```bash
-sudo nano /etc/assistant-bot/env     # DISCORD_TOKEN and a provider key
+sudo nano /etc/assistant-bot/env
 sudo systemctl start assistant-bot
 journalctl -u assistant-bot -f
+```
+
+Only two values are required. Everything else has a default:
+
+```
+DISCORD_TOKEN=MTIzNDU2Nzg5...
+DEEPSEEK_API_KEY=sk-...
+```
+
+Write `NAME=value` with no spaces around the `=`. Keep comments on their own
+line: systemd treats a comment after a value as part of the value, so a trailing
+`# note` silently corrupts the key.
+
+After editing the file, restart the service so the new values are read:
+
+```bash
+sudo systemctl restart assistant-bot
 ```
 
 ## Update
