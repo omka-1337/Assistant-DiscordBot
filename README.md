@@ -56,8 +56,15 @@ cp .env.example .env
 Fill in `DISCORD_TOKEN` and at least one provider key, then start the bot:
 
 ```bash
-python -m bot
+./run.sh
 ```
+
+`run.sh` creates the virtualenv on first use, verifies that `.env` exists and is
+readable only by you, and then starts the bot. `python -m bot` works too if you
+prefer to manage the environment yourself.
+
+For a server, see [deploy/](deploy/), which installs the bot as a systemd
+service and keeps the secrets in a root-owned file outside the project.
 
 ## Configuration
 
